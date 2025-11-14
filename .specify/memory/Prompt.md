@@ -130,6 +130,46 @@ Follow instructions in [speckit.specify.prompt.md](file:///c%3A/Users/joker.kang
 
 ---
 
+## 16:30 - 規格澄清流程 (speckit.clarify)
+
+**使用者 Prompt**:
+```
+Follow instructions in speckit.clarify.prompt.md
+```
+
+**執行動作**:
+1. ✅ 執行 `check-prerequisites.ps1 -Json -PathsOnly` 獲取規格路徑
+2. ✅ 載入並分析規格 `specs/001-seooc-iso26262-asil-b/spec.md`
+3. ✅ 進行結構化模糊性掃描（功能範圍、資料模型、非功能屬性等 10 大類）
+4. ✅ 識別 5 個高影響問題並逐一提問與澄清：
+
+**澄清問答記錄**:
+- Q1: 文件格式標準？ → A: Option A (Microsoft Word .docx)，未來轉 Codebeamer
+- Q2: 稽核時程與里程碑？ → A: Option B (分階段：3個月文件審查 + 6個月完整稽核)
+- Q3: PCIE Gen5 安全機制範圍？ → A: Option B (核心協議：CRC/ECC/鏈路訓練錯誤偵測)
+- Q4: 追溯矩陣管理責任？ → A: Option D (Codebeamer 自動產生，部署前品質工程師手動維護)
+- Q5: ASIL B 診斷覆蓋率目標？ → A: Option B (90% 高診斷覆蓋率)
+
+5. ✅ 每個回答後即時整合到規格文件（增量更新）
+6. ✅ 更新章節：Clarifications, FR-002/011/012, User Story 1/3, SC-002/004, Assumptions, Scope, Dependencies
+7. ✅ Git Commit (291f936)
+
+**覆蓋率總結**:
+- ✅ Resolved: 功能範圍、資料模型、整合相依性、約束取捨、術語一致性
+- ✅ Clear: 互動流程、邊界案例、完成信號
+- ⚠️ Deferred: 非功能品質屬性細節（適合規劃階段）
+
+**結果**:
+- 5 個問題已回答並整合
+- 規格完整度顯著提升
+- 無待解決的高影響模糊性
+- 已準備好進入任務拆解階段
+
+**Next Steps**:
+- 建議執行: `/speckit.plan` 進入任務拆解階段
+
+---
+
 ## 16:25 - 簡化 V&V 專業術語為白話文
 
 **使用者 Prompt**:
