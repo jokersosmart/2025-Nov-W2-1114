@@ -58,3 +58,25 @@ Follow instructions in [speckit.constitution.prompt.md](file:///c%3A/Users/joker
 
 ---
 
+## 2025-11-14 16:10 - 建立 Prompt 同步更新機制
+
+**使用者 Prompt**:
+```
+Follow instructions in [speckit.constitution.prompt.md](file:///c%3A/Users/joker.kang/SDD/2025-Nov-W2-1113/.github/prompts/speckit.constitution.prompt.md).
+每下一次 Prompt 就必須同步更新 Prompt.md 記錄
+```
+
+**執行動作**:
+1. 更新 `Prompt.md` 記錄本次互動
+2. Commit 變更
+3. 建立機制：未來每次收到新 prompt，必須先更新此檔案並 commit
+
+**相關 Commits**:
+- （待建立）- docs: update Prompt.md - establish prompt sync mechanism
+
+**結果**:
+- 已建立 prompt 同步更新機制
+- 未來每次互動都會記錄於此檔案並 commit
+
+---
+
