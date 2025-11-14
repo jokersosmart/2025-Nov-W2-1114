@@ -32,6 +32,15 @@
 - [ ] CHK005 Item with specific criteria
 - [ ] CHK006 Final item in this category
 
+## 憲法合規檢查（Constitution Compliance）
+
+- [ ] CHK-CONST-001 功能是否以獨立函式庫形式設計（函式庫優先原則）？
+- [ ] CHK-CONST-002 主要工具是否提供 CLI 或文本介面（CLI 與文本協定原則）？
+- [ ] CHK-CONST-003 是否遵循 TDD 流程並有自動化驗收測試（測試優先原則）？
+- [ ] CHK-CONST-004 跨模組契約是否建立整合測試（整合測試覆蓋原則）？
+- [ ] CHK-CONST-005 重要操作是否有結構化日誌與追蹤（可觀察性原則）？
+- [ ] CHK-CONST-006 版本策略是否採 Semantic Versioning（版本管理原則）？
+
 ## Notes
 
 - Check items off as completed: `[x]`

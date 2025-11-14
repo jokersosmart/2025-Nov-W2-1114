@@ -156,6 +156,8 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX [P] 新增結構化日誌與追蹤資料（可觀察性，憲法原則 5）
+- [ ] TXXX [P] 確認版本策略採 Semantic Versioning 並更新 CHANGELOG（憲法原則 5）
 
 ---
 

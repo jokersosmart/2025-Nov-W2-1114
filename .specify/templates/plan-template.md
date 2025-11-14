@@ -31,7 +31,15 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+依據專案憲法 `.specify/memory/constitution.md`，所有功能必須符合以下原則：
+
+- **函式庫優先 (Library-First)**: 新功能是否以獨立、可重用的函式庫形式設計？是否具備清楚介面與文件？
+- **CLI 與文本協定 (CLI & Text Protocol)**: 主要工具是否提供 CLI 或文本介面？是否支援 stdin/stdout 與 JSON 輸出？
+- **測試優先（不可協商）(Test-First)**: 是否遵循 TDD 流程（測試 → 失敗 → 實作 → 通過）？每個使用者情境是否至少有一個驗收測試？
+- **整合測試覆蓋 (Integration Testing)**: 跨模組契約或外部整合是否建立整合測試？
+- **可觀察性、版本管理與簡潔性**: 重要操作是否有結構化日誌？版本策略是否採 Semantic Versioning？設計是否追求簡潔（YAGNI）？
+
+若有任何原則違反，須在下方 Complexity Tracking 中說明理由。
 
 ## Project Structure
 

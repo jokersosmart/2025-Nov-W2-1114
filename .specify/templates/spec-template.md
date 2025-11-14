@@ -8,6 +8,10 @@
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
+  憲法要求：測試優先（不可協商）
+  - 每個功能的使用者情境需至少有一個可自動化的驗收測試（參見憲法原則 3）。
+  - 遵循 TDD 流程：撰寫測試 → 測試失敗 → 實作 → 測試通過 → 重構。
+  
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
   Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
   you should still have a viable MVP (Minimum Viable Product) that delivers value.
@@ -15,7 +19,7 @@
   Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
   Think of each story as a standalone slice of functionality that can be:
   - Developed independently
-  - Tested independently
+  - Tested independently (with automated acceptance tests)
   - Deployed independently
   - Demonstrated to users independently
 -->

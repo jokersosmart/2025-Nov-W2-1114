@@ -17,11 +17,11 @@ Added sections:
 Removed sections: none
 
 Templates requiring updates:
-- .specify/templates/plan-template.md : ⚠ pending (檢查 `Constitution Check` 是否需明確化)
-- .specify/templates/spec-template.md : ⚠ pending (測試/驗收條目需與憲法對齊)
-- .specify/templates/tasks-template.md : ⚠ pending (任務分類與必備階段需對應新原則)
-- .specify/templates/agent-file-template.md : ⚠ pending (自動產出指引需引用新原則)
-- .specify/templates/checklist-template.md : ⚠ pending (檢查清單項需與原則一致)
+- .specify/templates/plan-template.md : ✅ updated (Constitution Check 已明確化五大原則檢查項)
+- .specify/templates/spec-template.md : ✅ updated (User Scenarios 註解中已強化 TDD 與驗收測試要求)
+- .specify/templates/tasks-template.md : ✅ updated (Polish 階段已補充可觀察性與版本管理任務範例)
+- .specify/templates/agent-file-template.md : ✅ updated (前言已加入憲法原則引用說明)
+- .specify/templates/checklist-template.md : ✅ updated (新增憲法合規檢查項範例)
 
 Follow-up TODOs:
 - TODO(RATIFICATION_DATE): 原始批准日期未知，請提供 YYYY-MM-DD 或維持 TODO
