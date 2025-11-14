@@ -27,13 +27,34 @@ Follow instructions in [speckit.constitution.prompt.md](file:///c%3A/Users/joker
 **相關 Commits**:
 - `8bc95b1` - docs: amend constitution to v1.0.0 (initial principles + governance)
 - `e8c57d0` - docs: sync templates with constitution v1.0.0 (align all templates with governance principles)
-- （待建立）- docs: add Prompt.md for tracking AI interactions
+- `7469633` - docs: add Prompt.md for tracking AI interactions
+- `628c90b` - docs: move Prompt.md to .specify/memory/ (align with constitution.md location)
 
 **結果**:
 - 憲法版本：1.0.0（繁體中文）
 - 所有 templates 已對齊憲法原則
 - Sync Impact Report 已完成
+- Prompt.md 已建立並移至 `.specify/memory/` 資料夾
 - 待處理：`TODO(RATIFICATION_DATE)` 需人工提供批准日期
+
+---
+
+## 2025-11-14 16:05 - 移動 Prompt.md 至 memory 資料夾
+
+**使用者 Prompt**:
+```
+我想要放在 memory 資料夾底下，跟 #file:constitution.md 一樣
+```
+
+**執行動作**:
+1. 使用 `git mv` 將 `Prompt.md` 移至 `.specify/memory/Prompt.md`
+2. Commit 變更
+
+**相關 Commits**:
+- `628c90b` - docs: move Prompt.md to .specify/memory/ (align with constitution.md location)
+
+**結果**:
+- Prompt.md 現位於 `.specify/memory/` 資料夾，與 constitution.md 同一位置
 
 ---
 
