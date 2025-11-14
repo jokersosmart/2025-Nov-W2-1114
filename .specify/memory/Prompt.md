@@ -80,3 +80,30 @@ Follow instructions in [speckit.constitution.prompt.md](file:///c%3A/Users/joker
 
 ---
 
+## 2025-11-14 16:15 - SEooC 開發計畫規格制定 (ISO-26262 ASIL B + ASPICE)
+
+**使用者 Prompt**:
+```
+Follow instructions in [speckit.specify.prompt.md](file:///c%3A/Users/joker.kang/SDD/2025-Nov-W2-1113/.github/prompts/speckit.specify.prompt.md).
+我想要做一個稽核流程的文件計畫，目標是能通過 ISO-26262 ASIL B 等級以及兼容 ASPICE 的開發計畫，產品是 PCIE Gen5 的 Controller 相關晶片 ，希望你先規畫一個 SEooC 的計劃書給我，如果不太清楚 ISO-26262 相關稽核我有丟上我的 Spec 在 memory 資料夾底下，名稱都是 ISO 開頭的。SEooC 的目的是 : 不同於完全符合條款開發，本SEooC開發方法在於定義如何開發一個SEooC的元件。當開發一個SEooC時，相關更高階的需求或設計需要被假設，而這SEooC元件則依這些假設、預期的功能和包含外部介面的使用情境來開發。同時，相關應用的安全活動則依功能安全與網路資訊安全中敘述的條款來做裁切調整
+```
+
+**執行動作**:
+1. 更新 Prompt.md 記錄
+2. 分析 feature description 並產生 short-name
+3. 檢查既有 branches/specs 並計算 feature number
+4. 執行 `.specify/scripts/powershell/create-new-feature.ps1` 建立新分支與初始化
+5. 依 spec-template.md 撰寫 SEooC 開發計畫規格（繁體中文）
+6. 驗證規格品質並建立 checklist
+7. Commit 所有變更
+
+**相關 Commits**:
+- （執行中）
+
+**預期結果**:
+- 建立新 feature branch 與 spec 檔案
+- SEooC 開發計畫規格（符合 ISO-26262 ASIL B 與 ASPICE）
+- 品質驗證 checklist
+
+---
+
