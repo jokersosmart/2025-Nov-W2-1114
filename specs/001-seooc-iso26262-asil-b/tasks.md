@@ -97,7 +97,17 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 - [ ] T020 [P] 建立測試覆蓋率檢查腳本框架 `check-coverage.ps1`,驗證功能覆蓋率與結構覆蓋率 (符合 FR-007) (檔案路徑: `scripts/check-coverage.ps1`)
 - [ ] T021 [P] 建立 SC 達成率儀表板生成腳本框架 `generate-dashboard.ps1`,彙總 SC-001~008 達成率 (檔案路徑: `scripts/generate-dashboard.ps1`)
 
-**Checkpoint**: 流程框架與指引完成,User Story 實作可開始
+### ISO-26262 合規檢查清單基礎建設 (CDD 驗證標準)
+
+**⚠️ CDD 關鍵**: 此段落建立各類文件的 ISO-26262 合規檢查清單範本,作為後續 User Story 實作時「檢查表先於模板」的驗證標準
+
+- [ ] T021a [P] 建立 SEooC Assumption 合規檢查清單範本,包含 4 類假設驗證項目 (Functional/Environmental/Interface/Operational Assumptions) (符合 ISO-26262-10 §8) (檔案路徑: `docs/checklists/seooc-assumption-compliance-checklist.md`)
+- [ ] T021b [P] 建立 HARA 合規檢查清單範本,包含危害識別完整性、S/E/C 評估準確性、ASIL 判定驗證 (符合 ISO-26262-3 §7-§8) (檔案路徑: `docs/checklists/hara-compliance-checklist.md`)
+- [ ] T021c [P] 建立 TSR 合規檢查清單範本,包含需求明確性、ASIL 繼承正確性、可測試性、追溯性驗證 (符合 ISO-26262-4 §6) (檔案路徑: `docs/checklists/tsr-compliance-checklist.md`)
+- [ ] T021d [P] 建立 V&V Plan 合規檢查清單範本,包含測試策略完整性、覆蓋率要求 (100%/100%/90%)、測試工具驗證 (符合 ISO-26262-8 §9-§13) (檔案路徑: `docs/checklists/vv-plan-compliance-checklist.md`)
+- [ ] T021e [P] 建立 Safety Case 合規檢查清單範本,包含 GSN 結構完整性、證據充分性、假設管理 (符合 ISO-26262-2 §6.4.10) (檔案路徑: `docs/checklists/safety-case-compliance-checklist.md`)
+
+**Checkpoint**: 流程框架、指引與檢查清單範本完成,User Story 實作可遵循 CDD 流程開始
 
 ---
 
@@ -105,23 +115,37 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **目標**: 產出 SEooC Assumption Document 範本、範例與整合者檢查清單
 
-**獨立測試**: 檔案符合 4 段命名規範、模板包含 4 類假設 (Functional/Envir![alt text](image-1.png)onmental/Interface/Operational)、三方審查通過
-![alt text](image.png)
-### 文件模板與範例
+**獨立測試**: 檔案符合 4 段命名規範、模板包含 4 類假設 (Functional/Environmental/Interface/Operational)、三方審查通過
 
-- [ ] T022 [P] [US1] 建立 SEooC Assumption Document 範本 (Template),包含文件結構、假設分類 (4 類)、假設記錄表格、審查簽核欄位 (符合 data-model.md §2.1, contracts/seooc-assumption-schema.md) (檔案路徑: `docs/templates/SEooC-ASM_Template.docx`)
-- [ ] T023 [P] [US1] 建立 SEooC Assumption 填寫範例文件 (Example),基於 PCIE Gen5 Controller 實際假設 (環境溫度 -40°C~125°C, PCIE Gen5 鏈路誤碼率 < 10⁻¹², 等) (檔案路徑: `docs/examples/SEooC-ASM_Example_v1.0_Approved_20250117.docx`)
+**⚠️ CDD 執行順序**: 依憲法 v1.2.0 §CDD 流程,本階段嚴格遵循「檢查表 → 模板 → 範例 → 試點驗證」順序
+
+### CDD Step 1: 撰寫合規檢查表 (定義驗證標準)
+
+- [ ] T021a-REF [US1] **前置依賴**: 確認 Phase 2 T021a (SEooC Assumption 合規檢查清單範本) 已完成
 - [ ] T024 [US1] 建立整合者檢查清單 (Integrator Checklist),包含 3 大類驗證項目 (環境參數 5-7 項, 介面規格 6-8 項, 安全條件 4-5 項) (符合 spec.md Edge Cases, contracts/seooc-assumption-schema.md Integrator Checklist) (檔案路徑: `docs/templates/Integrator-Checklist_Template.xlsx`)
+
+### CDD Step 2: 建立文件模板 (實作內容結構)
+
+- [ ] T022 [US1] 建立 SEooC Assumption Document 範本 (Template),包含文件結構、假設分類 (4 類)、假設記錄表格、審查簽核欄位 (符合 data-model.md §2.1, contracts/seooc-assumption-schema.md) (檔案路徑: `docs/templates/SEooC-ASM_Template.docx`)
+
+### CDD Step 3: 試點驗證 (以實際案例測試)
+
+- [ ] T023 [US1] 建立 SEooC Assumption 填寫範例文件 (Example),基於 PCIE Gen5 Controller 實際假設 (環境溫度 -40°C~125°C, PCIE Gen5 鏈路誤碼率 < 10⁻¹², 等) (檔案路徑: `docs/examples/SEooC-ASM_Example_v1.0_Approved_20250117.docx`)
+
+### CDD Step 4: 檢查表驗證 (依檢查表審查試點輸出)
+
+- [ ] T027 [US1] 使用 validate-naming.ps1 驗證 SEooC-ASM_Example 檔名符合 4 段命名規範
+- [ ] T027a [US1] 依 T021a 合規檢查清單逐項驗證 SEooC-ASM_Example 完整性 (4 類假設完整、合理性說明、影響評估)
+- [ ] T028 [US1] 執行三方審查: Functional Safety Engineer 填寫範本,品質工程師依檢查清單檢查完整性,技術負責人審查 (記錄審查發現)
+
+### CDD Step 5: 模板修訂 (根據驗證結果改進)
+
+- [ ] T028a [US1] 根據 T027a/T028 審查發現修訂 SEooC-ASM_Template (若有缺失),重新執行 T023→T027a→T028 驗證循環直到通過
 
 ### 流程文件補充
 
 - [ ] T025 [US1] 撰寫 SEooC Assumption 撰寫流程指引,說明如何使用範本、假設合理性評估、整合者責任定義 (符合 ISO-26262-10 §8) (檔案路徑: `docs/processes/seooc-assumption-development-process.md`)
 - [ ] T026 [US1] 更新 Review Process,新增 SEooC Assumption 審查檢查清單 (確認 4 類假設完整性、合理性說明、影響評估) (檔案路徑: `docs/processes/review-approval-process.md` 附錄)
-
-### 驗證與測試
-
-- [ ] T027 [US1] 使用 validate-naming.ps1 驗證 SEooC-ASM_Example 檔名符合 4 段命名規範
-- [ ] T028 [US1] 執行試點驗證: Functional Safety Engineer 填寫範本,品質工程師檢查完整性,技術負責人審查 (三方審查)
 
 **Checkpoint**: SEooC Assumption 文件系統完整,可獨立產出符合 ISO-26262 要求的假設文件
 
@@ -133,21 +157,35 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **獨立測試**: HARA 報告包含 S/E/C 評估、ASIL 判定依 ISO-26262-3 Table 4 正確、所有危害有對應安全目標
 
-### 文件模板與範例
+**⚠️ CDD 執行順序**: 依憲法 v1.2.0 §CDD 流程,本階段嚴格遵循「檢查表 → 工具 → 模板 → 範例 → 驗證循環」順序
 
-- [ ] T029 [P] [US2] 建立 HARA Report 範本 (Template),包含 Item Definition、操作情境、危害清單、S/E/C 評估表格、ASIL 判定矩陣、安全目標清單 (符合 data-model.md §2.2, contracts/hara-report-schema.md) (檔案路徑: `docs/templates/HARA_Template.docx`)
-- [ ] T030 [P] [US2] 建立 HARA Report 填寫範例,基於 PCIE Gen5 Controller 危害場景 (CRC 錯誤導致錯誤資料傳輸、鏈路訓練失敗導致通訊中斷, ASIL B 分析) (檔案路徑: `docs/examples/HARA_Example_v1.0_Approved_20250120.docx`)
+### CDD Step 1: 撰寫合規檢查表 (定義驗證標準)
+
+- [ ] T021b-REF [US2] **前置依賴**: 確認 Phase 2 T021b (HARA 合規檢查清單範本) 已完成
 - [ ] T031 [US2] 建立 ASIL 判定矩陣工具 (Excel),自動化計算 ASIL 等級 (依 S/E/C 輸入查表 ISO-26262-3 Table 4) (檔案路徑: `docs/templates/ASIL-Matrix_Calculator.xlsx`)
+
+### CDD Step 2: 建立文件模板 (實作內容結構)
+
+- [ ] T029 [US2] 建立 HARA Report 範本 (Template),包含 Item Definition、操作情境、危害清單、S/E/C 評估表格、ASIL 判定矩陣、安全目標清單 (符合 data-model.md §2.2, contracts/hara-report-schema.md) (檔案路徑: `docs/templates/HARA_Template.docx`)
+
+### CDD Step 3: 試點驗證 (以實際案例測試)
+
+- [ ] T030 [US2] 建立 HARA Report 填寫範例,基於 PCIE Gen5 Controller 危害場景 (CRC 錯誤導致錯誤資料傳輸、鏈路訓練失敗導致通訊中斷, ASIL B 分析) (檔案路徑: `docs/examples/HARA_Example_v1.0_Approved_20250120.docx`)
+
+### CDD Step 4: 檢查表驗證 (依檢查表審查試點輸出)
+
+- [ ] T034 [US2] 驗證 HARA_Example 中所有危害的 ASIL 計算正確性 (使用 T031 ASIL 矩陣工具交叉驗證 S/E/C → ASIL 對應)
+- [ ] T034a [US2] 依 T021b 合規檢查清單逐項驗證 HARA_Example 完整性 (危害識別完整、S/E/C 評估準確、安全目標追溯)
+- [ ] T035 [US2] 執行三方審查: Functional Safety Engineer 主導 HARA,技術負責人參與危害識別,品質工程師依檢查清單驗證追溯完整性
+
+### CDD Step 5: 模板修訂 (根據驗證結果改進)
+
+- [ ] T035a [US2] 根據 T034/T034a/T035 審查發現修訂 HARA_Template (若有缺失),重新執行 T030→T034→T035 驗證循環直到通過
 
 ### 流程文件補充
 
 - [ ] T032 [US2] 更新 HARA Process,補充詳細 HARA 執行步驟 (Item Definition → 操作情境識別 → 危害分析 → S/E/C 評估 → ASIL 判定 → 安全目標衍生) (檔案路徑: `docs/processes/hara-process.md`)
 - [ ] T033 [US2] 建立 Safety Goal 衍生指引,說明如何從危害推導安全目標、Safe State 定義、容錯時間區間 (FTTI) 設定 (檔案路徑: `docs/guidelines/safety-goal-derivation-guide.md`)
-
-### 驗證與測試
-
-- [ ] T034 [US2] 驗證 HARA_Example 中所有危害的 ASIL 計算正確性 (人工檢查 S/E/C → ASIL 對應 ISO-26262-3 Table 4)
-- [ ] T035 [US2] 執行試點驗證: Functional Safety Engineer 主導 HARA 執行,技術負責人參與,品質工程師驗證追溯完整性
 
 **Checkpoint**: HARA 文件系統完整,可獨立產出符合 ISO-26262-3 §7-§8 要求的風險評估報告
 
@@ -159,21 +197,35 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **獨立測試**: TSR 可追溯至 Safety Goal、ASIL 等級正確繼承 (TSR.asil ≥ SG.asil)、驗證標準明確
 
-### 文件模板與範例
+**⚠️ CDD 執行順序**: 依憲法 v1.2.0 §CDD 流程,本階段嚴格遵循「檢查表 → 驗證腳本 → 模板 → 範例 → 驗證循環」順序
 
-- [ ] T036 [P] [US3] 建立 TSR 文件範本 (Template),包含需求清單、ASIL 等級、可追溯性欄位 (追溯至 Safety Goal)、驗證標準欄位 (符合 data-model.md §2.3, contracts/tsr-schema.md) (檔案路徑: `docs/templates/TSR_Template.docx`)
-- [ ] T037 [P] [US3] 建立 TSR 填寫範例,基於 HARA_Example 的安全目標衍生 TSR (如「CRC 錯誤偵測機制須在 10ms 內觸發診斷」, ASIL B) (檔案路徑: `docs/examples/TSR_Example_v1.0_Approved_20250125.docx`)
+### CDD Step 1: 撰寫合規檢查表 (定義驗證標準)
+
+- [ ] T021c-REF [US3] **前置依賴**: 確認 Phase 2 T021c (TSR 合規檢查清單範本) 已完成
 - [ ] T038 [US3] 建立 ASIL 繼承驗證腳本 `validate-asil-inheritance.ps1`,自動檢查 TSR.asil ≥ SafetyGoal.asil (符合 FR-004, ISO-26262-4 §6.4.1.2) (檔案路徑: `scripts/validate-asil-inheritance.ps1`)
+
+### CDD Step 2: 建立文件模板 (實作內容結構)
+
+- [ ] T036 [US3] 建立 TSR 文件範本 (Template),包含需求清單、ASIL 等級、可追溯性欄位 (追溯至 Safety Goal)、驗證標準欄位 (符合 data-model.md §2.3, contracts/tsr-schema.md) (檔案路徑: `docs/templates/TSR_Template.docx`)
+
+### CDD Step 3: 試點驗證 (以實際案例測試)
+
+- [ ] T037 [US3] 建立 TSR 填寫範例,基於 HARA_Example 的安全目標衍生 TSR (如「CRC 錯誤偵測機制須在 10ms 內觸發診斷」, ASIL B) (檔案路徑: `docs/examples/TSR_Example_v1.0_Approved_20250125.docx`)
+
+### CDD Step 4: 檢查表驗證 (依檢查表審查試點輸出)
+
+- [ ] T041 [US3] 執行 validate-asil-inheritance.ps1,驗證 TSR_Example 所有 TSR 的 ASIL 繼承正確 (自動化驗證)
+- [ ] T041a [US3] 依 T021c 合規檢查清單逐項驗證 TSR_Example 完整性 (需求明確性、可測試性、追溯性)
+- [ ] T042 [US3] 執行三方審查: Functional Safety Engineer 撰寫 TSR,技術負責人審查技術可行性,品質工程師依檢查清單驗證追溯完整性
+
+### CDD Step 5: 模板修訂 (根據驗證結果改進)
+
+- [ ] T042a [US3] 根據 T041/T041a/T042 審查發現修訂 TSR_Template (若有缺失),重新執行 T037→T041→T042 驗證循環直到通過
 
 ### 流程文件補充
 
 - [ ] T039 [US3] 撰寫 TSR 開發流程指引 (TSR Development Process),說明如何從 Safety Goal 衍生 TSR、如何撰寫可測量驗證標準、ASIL 繼承原則 (檔案路徑: `docs/processes/tsr-development-process.md`)
 - [ ] T040 [US3] 更新 Traceability Guide,補充 Safety Goal → TSR → Design → Test 追溯鏈建立方法 (檔案路徑: `docs/guidelines/traceability-guide.md` 附錄)
-
-### 驗證與測試
-
-- [ ] T041 [US3] 執行 validate-asil-inheritance.ps1,驗證 TSR_Example 所有 TSR 的 ASIL 繼承正確
-- [ ] T042 [US3] 執行試點驗證: Functional Safety Engineer 撰寫 TSR,技術負責人審查技術可行性,品質工程師驗證追溯完整性
 
 **Checkpoint**: TSR 文件系統完整,可獨立產出符合 ISO-26262-4 §6 要求的技術安全需求
 
@@ -185,21 +237,35 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **獨立測試**: V&V Plan 涵蓋四階段測試策略、覆蓋率目標明確 (功能 100%, 結構 100%, 診斷 90%)
 
-### 文件模板與範例
+**⚠️ CDD 執行順序**: 依憲法 v1.2.0 §CDD 流程,本階段嚴格遵循「檢查表 → 工具清單 → 模板 → 範例 → 驗證循環」順序
 
-- [ ] T043 [P] [US4] 建立 V&V Plan 範本 (Template),包含測試策略 (四階段: Unit/Integration/System/Safety Validation)、覆蓋率要求 (ASIL B: 100%/100%/90%)、測試工具驗證 (TI/TCL 分類) (符合 data-model.md §2.4, contracts/vv-plan-schema.md, FR-005) (檔案路徑: `docs/templates/VV-PLAN_Template.docx`)
-- [ ] T044 [P] [US4] 建立 V&V Plan 填寫範例,基於 TSR_Example 設計測試案例 (CRC 錯誤注入測試、鏈路訓練失敗測試) (檔案路徑: `docs/examples/VV-PLAN_Example_v1.0_Approved_20250130.docx`)
+### CDD Step 1: 撰寫合規檢查表 (定義驗證標準)
+
+- [ ] T021d-REF [US4] **前置依賴**: 確認 Phase 2 T021d (V&V Plan 合規檢查清單範本) 已完成
 - [ ] T045 [US4] 建立測試工具驗證檢查清單 (Tool Qualification Checklist),依 ISO-26262-8 §11 分類工具 (TI1/TI2/TI3, TCL1/TCL2/TCL3) (檔案路徑: `docs/templates/Tool-Qualification-Checklist_Template.xlsx`)
+
+### CDD Step 2: 建立文件模板 (實作內容結構)
+
+- [ ] T043 [US4] 建立 V&V Plan 範本 (Template),包含測試策略 (四階段: Unit/Integration/System/Safety Validation)、覆蓋率要求 (ASIL B: 100%/100%/90%)、測試工具驗證 (TI/TCL 分類) (符合 data-model.md §2.4, contracts/vv-plan-schema.md, FR-005) (檔案路徑: `docs/templates/VV-PLAN_Template.docx`)
+
+### CDD Step 3: 試點驗證 (以實際案例測試)
+
+- [ ] T044 [US4] 建立 V&V Plan 填寫範例,基於 TSR_Example 設計測試案例 (CRC 錯誤注入測試、鏈路訓練失敗測試) (檔案路徑: `docs/examples/VV-PLAN_Example_v1.0_Approved_20250130.docx`)
+
+### CDD Step 4: 檢查表驗證 (依檢查表審查試點輸出)
+
+- [ ] T048 [US4] 更新 check-coverage.ps1,實作功能覆蓋率驗證 (TSR → Test Case 追溯完整性 100%),驗證 VV-PLAN_Example
+- [ ] T048a [US4] 依 T021d 合規檢查清單逐項驗證 VV-PLAN_Example 完整性 (測試策略完整、覆蓋率要求明確、工具驗證)
+- [ ] T049 [US4] 執行三方審查: Test Engineer 填寫 V&V Plan,品質工程師依檢查清單驗證覆蓋率計算,技術負責人審查測試策略
+
+### CDD Step 5: 模板修訂 (根據驗證結果改進)
+
+- [ ] T049a [US4] 根據 T048/T048a/T049 審查發現修訂 VV-PLAN_Template (若有缺失),重新執行 T044→T048→T049 驗證循環直到通過
 
 ### 流程文件補充
 
 - [ ] T046 [US4] 更新 V&V Process,補充四階段測試策略執行細節、靜態驗證方法 (Code Review, MISRA-C 分級合規), 測試工具驗證流程 (檔案路徑: `docs/processes/vv-process.md`)
 - [ ] T047 [US4] 建立 MISRA-C 合規指引 (MISRA-C Compliance Guide),定義 ASIL B 合規等級 (Mandatory 100%, Required ≥98%, Advisory ≥80%) 與偏差管理流程 (檔案路徑: `docs/guidelines/misra-c-compliance-guide.md`)
-
-### 驗證與測試
-
-- [ ] T048 [US4] 更新 check-coverage.ps1,實作功能覆蓋率驗證 (TSR → Test Case 追溯完整性 100%)
-- [ ] T049 [US4] 執行試點驗證: Test Engineer 填寫 V&V Plan,品質工程師驗證覆蓋率計算,技術負責人審查測試策略
 
 **Checkpoint**: V&V Plan 文件系統完整,可獨立產出符合 ISO-26262-8 §9-§13 要求的測試計畫
 
@@ -211,21 +277,35 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **獨立測試**: Safety Case 採用 GSN 標準方法、論證邏輯完整、證據可追溯
 
-### 文件模板與範例
+**⚠️ CDD 執行順序**: 依憲法 v1.2.0 §CDD 流程,本階段遵循「檢查表 → 指引/標準 → 模板 → 範例 → 驗證循環」順序
 
-- [ ] T050 [P] [US5] 建立 Safety Case 範本 (Template),包含 GSN 架構 (Goals/Strategies/Evidence/Context/Assumptions)、論證層次結構、證據連結表格 (符合 data-model.md §2.5, contracts/safety-case-schema.md, FR-009) (檔案路徑: `docs/templates/SAFETY-CASE_Template.docx`)
-- [ ] T051 [P] [US5] 建立 Safety Case 填寫範例,基於 PCIE Gen5 Controller 論證 ASIL B 合規性 (頂層目標: Controller 符合 ASIL B, 策略: 透過 HARA/TSR/V&V, 證據: HARA_Example + TSR_Example + VV-PLAN_Example) (檔案路徑: `docs/examples/SAFETY-CASE_Example_v1.0_Approved_20250205.docx`)
+### CDD Step 1: 撰寫合規檢查表 (定義驗證標準)
+
+- [ ] T021e-REF [US5] **前置依賴**: 確認 Phase 2 T021e (Safety Case 合規檢查清單範本) 已完成
 - [ ] T052 [US5] 更新 GSN Construction Guide,補充 GSN 符號說明、論證模式範例 (分析論證、測試論證)、常見錯誤 (檔案路徑: `docs/guidelines/gsn-construction-guide.md`)
+
+### CDD Step 2: 建立文件模板 (實作內容結構)
+
+- [ ] T050 [US5] 建立 Safety Case 範本 (Template),包含 GSN 架構 (Goals/Strategies/Evidence/Context/Assumptions)、論證層次結構、證據連結表格 (符合 data-model.md §2.5, contracts/safety-case-schema.md, FR-009) (檔案路徑: `docs/templates/SAFETY-CASE_Template.docx`)
+
+### CDD Step 3: 試點驗證 (以實際案例測試)
+
+- [ ] T051 [US5] 建立 Safety Case 填寫範例,基於 PCIE Gen5 Controller 論證 ASIL B 合規性 (頂層目標: Controller 符合 ASIL B, 策略: 透過 HARA/TSR/V&V, 證據: HARA_Example + TSR_Example + VV-PLAN_Example) (檔案路徑: `docs/examples/SAFETY-CASE_Example_v1.0_Approved_20250205.docx`)
+
+### CDD Step 4: 檢查表驗證 (依檢查表審查試點輸出)
+
+- [ ] T055 [US5] 驗證 SAFETY-CASE_Example 中所有證據連結可追溯至實際文件 (HARA_Example, TSR_Example, VV-PLAN_Example)
+- [ ] T055a [US5] 依 T021e 合規檢查清單逐項驗證 SAFETY-CASE_Example 完整性 (GSN 結構完整、論證邏輯、證據充分)
+- [ ] T056 [US5] 執行三方審查: Technical Lead 主導 Safety Case 建構,Functional Safety Engineer 驗證論證邏輯,品質工程師依檢查清單檢查證據完整性
+
+### CDD Step 5: 模板修訂 (根據驗證結果改進)
+
+- [ ] T056a [US5] 根據 T055/T055a/T056 審查發現修訂 SAFETY-CASE_Template (若有缺失),重新執行 T051→T055→T056 驗證循環直到通過
 
 ### 流程文件補充
 
 - [ ] T053 [US5] 建立 Safety Case 建構流程指引 (Safety Case Development Process),說明如何從安全目標建構論證樹、如何選擇論證策略、如何連結證據文件 (檔案路徑: `docs/processes/safety-case-development-process.md`)
 - [ ] T054 [US5] 更新 Review Process,新增 Safety Case 審查檢查清單 (論證邏輯完整性、GSN 符號正確性、證據可追溯性) (檔案路徑: `docs/processes/review-approval-process.md` 附錄)
-
-### 驗證與測試
-
-- [ ] T055 [US5] 驗證 SAFETY-CASE_Example 中所有證據連結可追溯至實際文件 (HARA_Example, TSR_Example, VV-PLAN_Example)
-- [ ] T056 [US5] 執行試點驗證: Technical Lead 主導 Safety Case 建構,Functional Safety Engineer 驗證論證邏輯,品質工程師檢查證據完整性
 
 **Checkpoint**: Safety Case 文件系統完整,可獨立產出符合 ISO-26262-2 §6.4.10 要求的安全論證
 
@@ -236,6 +316,8 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 **目標**: 產出追溯矩陣範本、手動維護流程與完整性驗證工具
 
 **獨立測試**: 追溯矩陣支援 4 類追溯關係、100% 雙向追溯、驗證腳本可自動檢查孤立項目
+
+**⚠️ CDD 執行順序**: 本階段為工具類 (Traceability Matrix),遵循「驗證腳本 → 模板 → 範例 → 驗證循環」順序 (無需合規檢查清單)
 
 ### 文件模板與範例
 
@@ -267,6 +349,8 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **獨立測試**: CM Plan 定義簡化 Git Flow、基線 tag 規範、變更控制流程明確
 
+**⚠️ CDD 執行順序**: 本階段為流程文件類 (CM Plan),遵循「工具腳本 → 模板 → 範例 → 驗證循環」順序 (無需合規檢查清單)
+
 ### 文件模板與範例
 
 - [ ] T064 [P] [US7] 建立 CM Plan 範本 (Template),包含 Git 分支策略 (簡化 Git Flow: main + develop + feature/*)、基線管理 (每月末打 tag v{X}.0-Month{N}-Review)、變更控制流程 (四維度影響分析) (符合 data-model.md §2.7, FR-006) (檔案路徑: `docs/templates/CM-PLAN_Template.docx`)
@@ -292,6 +376,8 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 **目標**: 產出 Review Record 範本、分級審查矩陣與缺陷追蹤工具
 
 **獨立測試**: Review Record 包含審查者簽名、缺陷清單、缺陷解決狀態追蹤
+
+**⚠️ CDD 執行順序**: 本階段為記錄範本類,遵循「模板 → 範例 → 驗證」順序 (無需合規檢查清單)
 
 ### 文件模板與範例
 
