@@ -1,7 +1,7 @@
 <!--
 Sync Impact Report
 
-Version change: unspecified -> 1.0.0
+Version change: 1.0.0 -> 1.1.0
 
 Modified principles:
 - [PRINCIPLE_1_NAME] -> 函式庫優先 (Library-First)
@@ -13,6 +13,7 @@ Modified principles:
 Added sections:
 - 技術限制與合規要求 (Technical Constraints & Compliance)
 - 開發流程與品質閘 (Development Workflow & Quality Gates)
+- Prompt 記錄與變更追蹤 (Prompt Recording & Change Tracking) - v1.1.0
 
 Removed sections: none
 
@@ -69,10 +70,23 @@ Follow-up TODOs:
 - TODO: 若專案需遵守特定合規（例如 GDPR、SOC2），請在此明確列出合規條款與責任人。
 
 ## 開發流程與品質閘
-開發流程需包含明確的評審與 CI 品質閘：
-- MUST: 所有變更以 PR 方式提交，並至少通過一位審查者的核准（或維護者群組規則）。
-- MUST: PR 必須通過自動測試與 linters；若有憲法違反（Constitution Check），需在 PR 描述中說明豁免理由。
-- SHOULD: 週期性（建議每 6 個月）檢視憲法與治理規則。
+開發流程需包含明確的評審與 CI 品質閘:
+- MUST: 所有變更以 PR 方式提交,並至少通過一位審查者的核准(或維護者群組規則)。
+- MUST: PR 必須通過自動測試與 linters;若有憲法違反(Constitution Check),需在 PR 描述中說明豁免理由。
+- SHOULD: 週期性(建議每 6 個月)檢視憲法與治理規則。
+
+### Prompt 記錄與變更追蹤 (Prompt Recording & Change Tracking)
+所有與 AI 助理的互動都必須記錄並納入版本管理,確保完整的追溯性。
+- MUST: 每次與 AI 助理互動後,必須將 Prompt 與執行動作記錄到 `.specify/memory/Prompt.md`。
+- MUST: Prompt.md 的每次更新都必須獨立 commit,commit message 格式為 `docs: update Prompt.md - [簡短描述]`。
+- MUST: Prompt.md 記錄格式應包含:
+  * 日期時間戳記 (YYYY-MM-DD HH:MM)
+  * 使用者 Prompt 原文
+  * 執行動作摘要
+  * 相關 Commits 列表
+  * 結果與影響範圍
+- SHOULD: 重大互動(例如規格制定、架構決策)應在記錄中標註 **重要** 或類似標記。
+理由: 確保所有決策過程可追溯,團隊成員可理解每個變更的背景與理由,避免知識流失。
 
 ## Governance
 憲法為專案治理的最高指引；任何修訂需遵循以下程序：
@@ -85,4 +99,4 @@ Follow-up TODOs:
 - MINOR: 當新增原則或擴展既有指引時（向後相容）。
 - PATCH: 文辭修正、錯字或小幅澄清。
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): 原始批准日期未知 | **Last Amended**: 2025-11-13
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): 原始批准日期未知 | **Last Amended**: 2025-11-17

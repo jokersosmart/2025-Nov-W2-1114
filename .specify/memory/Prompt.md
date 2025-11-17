@@ -459,7 +459,136 @@ V&V 我不知道是什麼意思請幫我編輯成更白話一點讓跟此專案�
 - ✅ 符合使用者需求：稽核員看到的是產品功能與流程，而非「稽核導向文件」
 
 **Next Steps**:
-- 建議執行: `/speckit.plan` 進入任務拆解階段（所有前置工作已完成）
+- 建議執行: `/speckit.plan` 進入任務拆解階段(所有前置工作已完成)
+
+---
+
+## 2025-11-17 17:00 - Requirements Quality Checklist ISO 條文對應完整化
+
+**使用者 Prompt**:
+```
+Follow instructions in speckit.checklist.prompt.md
+我覺得我都會有需要 但是想要先從 A 開始 A 結束之後再 B 依序往下到 E
+我想要每個 check list 都會有可以找到再 ISO-26262 條文裡面可以對應的條文
+2. (選擇創建 ISO 參考索引表)
+需要參考 ISO-26262 的一定不只是只有 ISO-26262-4...詳細一點的 TSR 說明還有技術實現會在下一份文件...現在想要撰寫的文件名稱是 RD-03-006-01.E SEooC報告 SEooC Report
+再檢查一下還有哪個部分沒有找到對應的條例
+這份統計跟表格可否也讓我知道哪個檔案有這種條文對應覆蓋分析?
+然後你忘記把我的指令也給紀錄在我說要指定的 Prompt.md 裡面了
+```
+
+**執行動作**:
+1. ✅ 依 speckit.checklist.prompt.md 執行檢查清單生成流程
+2. ✅ 創建 requirements-quality.md(選項 A - 需求撰寫品質)
+   - 檔案:`specs/001-seooc-iso26262-asil-b/checklists/requirements-quality.md`
+   - 項目數:143 個(CHK001-CHK143)
+   - 分類:10 大類(明確性、完整性、一致性、可測試性、可追溯性、原子性、優先級依賴、範圍界定、假設約束、風險管理)
+   - 文件定位:RD-03-006-01.E SEooC報告(SG→TSR、使用情境、環境假設與限制)
+
+3. ✅ 為所有檢查項目添加 ISO-26262:2018 條文對應
+   
+   **A. 直接條文引用**(CHK001-022):
+   - 使用 multi_replace_string_in_file 分 3 批次添加
+   - 格式:`**[ISO 26262-X:2018 §Y]**`
+   - 涵蓋 Part-1(術語)、Part-2(管理)、Part-4(系統層級)、Part-8(支援流程)、Part-10(SEooC)
+   
+   **B. 創建完整 ISO-26262 參考索引表**(涵蓋全部 143 項):
+   - **文件適用的 ISO-26262 Parts 總覽表**:7 個 Parts(1, 2, 3, 4, 8, 9, 10)
+   - **10 個類別對應表**:每個類別的檢查項目映射到具體 ISO 條文
+   - **Detailed Part Explanations**:每個 Part 的詳細條款說明與應用場景
+   - **使用建議**:優先級指引(Part-4 核心、Part-10 §8 SEooC 重點、Part-2/3 基礎、Part-8/9 支援)
+
+4. ✅ 檢查 ISO 條文對應覆蓋率:**100% 完整覆蓋**
+   - 所有 143 個檢查項目都有明確的 ISO-26262:2018 條文對應
+   - 對應方式:直接引用(CHK001-022) + 索引表映射(CHK001-143)
+
+5. ✅ 添加 ISO 條文對應覆蓋分析統計表到 requirements-quality.md
+   - **條文對應覆蓋表**:10 大類別與 ISO 條文覆蓋範圍
+   - **Parts 使用統計**:8 個 Parts 的使用頻率與主要應用項目
+     * Part-4(系統層級):113 項(核心)⭐
+     * Part-10(SEooC 指引):75 項(SEooC 專用)⭐
+     * Part-2(管理):44 項
+     * Part-9(安全分析):12 項
+     * Part-8(支援流程):9 項
+     * Part-3(概念階段):6 項
+     * Part-1(術語):5 項
+     * Part-5(硬體層級):2 項
+
+6. ✅ 更新 Prompt.md 記錄本次互動
+
+**ISO-26262 覆蓋範圍**:
+- **Part-1 (Vocabulary)**: 術語定義(ASIL, HARA, SEooC, V&V)
+- **Part-2 (Management)**: 專案管理、角色責任、時程規劃、審查流程、風險管理
+- **Part-3 (Concept Phase)**: HARA、安全目標、ASIL 分配、追溯性
+- **Part-4 (System Level)** ⭐ 核心: 技術安全概念(TSC)、技術安全需求(TSR)、整合測試、安全確認、Table 9(覆蓋率要求)
+- **Part-5 (Hardware Level)**: 硬體架構、診斷覆蓋率
+- **Part-8 (Supporting Processes)**: 配置管理、變更控制、文件管理
+- **Part-9 (Analyses)**: 安全分析方法、失效模式分析(DFA)
+- **Part-10 (Guideline)** ⭐ SEooC: §8 SEooC 開發指引(範圍定義、假設文件、整合使用)
+
+**關鍵設計決策**:
+- ✅ 採用「索引表 + 部分直接引用」混合模式,而非 143 個項目全部內嵌引用
+- ✅ 索引表提供結構化映射,便於查找與維護
+- ✅ 教育價值:索引表同時作為 ISO-26262 結構的學習資源
+- ✅ 可維護性:單一位置更新勝於 143 個分散引用
+
+**相關 Commits**:
+- (待執行)- docs: add ISO-26262 coverage analysis to requirements-quality checklist
+- (待執行)- docs: update Prompt.md - ISO clause mapping completion
+
+**結果**:
+- ✅ requirements-quality.md 包含完整 ISO-26262 條文對應(143 項 100% 覆蓋)
+- ✅ ISO 條文對應覆蓋分析統計表已添加到文件總結區塊
+- ✅ 明確標註統計表位置:`specs/001-seooc-iso26262-asil-b/checklists/requirements-quality.md` 總結章節
+- ✅ 所有檢查項目可追溯到具體 ISO-26262:2018 Parts 與條款
+- ✅ 符合外部評估準備要求(正式級檢查清單 + ISO 標準對應)
+
+**Next Steps**:
+- 建議執行: 創建 process-compliance.md(選項 B),依序完成 B → C → D → E
+
+---
+
+## 2025-11-17 17:10 - 憲法更新: Prompt 記錄與變更追蹤規則
+
+**使用者 Prompt**:
+```
+每次更新都會需要紀錄指令跟 commit 我想要建立在我的憲法裡面也就是我的 constitution.md
+```
+
+**執行動作**:
+1. ✅ 在 constitution.md 的「開發流程與品質閘」章節新增子章節
+2. ✅ 新增「Prompt 記錄與變更追蹤」規則:
+   - MUST: 每次與 AI 助理互動後記錄到 `.specify/memory/Prompt.md`
+   - MUST: Prompt.md 每次更新都必須獨立 commit,格式 `docs: update Prompt.md - [簡短描述]`
+   - MUST: Prompt.md 記錄格式包含日期時間、原文、執行動作、相關 commits、結果
+   - SHOULD: 重大互動應標註「重要」標記
+3. ✅ 更新憲法版本: 1.0.0 → 1.1.0 (MINOR - 新增原則,向後相容)
+4. ✅ 更新 Last Amended: 2025-11-17
+5. ✅ 更新 Sync Impact Report:
+   - Version change: 1.0.0 -> 1.1.0
+   - Added sections: Prompt 記錄與變更追蹤 (v1.1.0)
+6. ✅ 更新 Prompt.md 記錄本次憲法修訂
+
+**憲法變更摘要**:
+- **類型**: MINOR (新增原則)
+- **新增章節**: "Prompt 記錄與變更追蹤 (Prompt Recording & Change Tracking)"
+- **理由**: 確保所有 AI 互動決策過程可追溯,避免知識流失,提升團隊協作透明度
+- **影響範圍**: 所有使用 AI 助理的互動都必須遵循此規則
+
+**相關 Commits**:
+- (待執行) - docs: update constitution to v1.1.0 (add Prompt Recording rule)
+- (待執行) - docs: update Prompt.md - constitution amendment v1.1.0
+
+**結果**:
+- ✅ Constitution v1.1.0 已包含 Prompt 記錄強制要求
+- ✅ 所有未來的 AI 互動都必須記錄到 Prompt.md 並 commit
+- ✅ 記錄格式已標準化(日期時間、Prompt 原文、執行動作、commits、結果)
+- ✅ Sync Impact Report 已更新版本變更紀錄
+
+**Next Steps**:
+- 執行 commit: `docs: update constitution to v1.1.0 (add Prompt Recording rule)`
+- 執行 commit: `docs: update Prompt.md - constitution amendment v1.1.0`
+- 建議執行: 創建 process-compliance.md(選項 B)
 
 ---
 
