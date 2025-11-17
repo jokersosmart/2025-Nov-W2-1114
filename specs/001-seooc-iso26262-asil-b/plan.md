@@ -71,7 +71,9 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-依據專案憲法 `.specify/memory/constitution.md`，此功能符合以下原則：
+依據專案憲法 `.specify/memory/constitution.md` **v1.2.0** (2025-11-17 修訂)，此功能符合以下原則：
+
+**專案類型聲明**: 本專案為**文件開發專案 (Documentation Development Project)**，依憲法 v1.2.0 §專案類型定義與測試優先原則適用性，採用**驗證優先 (Verification-First)** 替代傳統測試優先 (TDD)，實踐方式為**檢查表驅動開發 (Checklist-Driven Development, CDD)**。
 
 ### ✅ 函式庫優先 (Library-First)
 **狀態**: 部分適用 (文件專案特性)

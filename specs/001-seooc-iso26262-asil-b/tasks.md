@@ -17,10 +17,19 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **專案特性**:
 - **類型**: 文件/流程管理專案 (非軟體開發)
+- **專案類型聲明**: 文件開發專案 (Documentation Development Project，依憲法 v1.2.0)
+- **測試策略**: Verification-First (Checklist-Driven Development, CDD)
 - **格式**: Microsoft Word (.docx), Excel (.xlsx)
 - **版本控制**: Git + Git LFS (管理 Word 大檔案)
 - **自動化**: PowerShell 驗證腳本
 - **目標**: ISO-26262:2018 ASIL B + ASPICE Capability Level 2
+
+**CDD 流程說明** (依憲法 v1.2.0 §專案類型定義與測試優先原則適用性):
+1. **撰寫合規檢查表** → 定義驗證標準 (等同於 TDD 的「寫測試」)
+2. **建立文件模板** → 實作內容結構 (等同於 TDD 的「實作」)
+3. **試點驗證** → 以實際案例測試模板 (等同於 TDD 的「執行測試」)
+4. **檢查表驗證** → 依檢查表審查試點輸出 (等同於 TDD 的「測試通過」)
+5. **模板修訂** → 根據驗證結果改進 (等同於 TDD 的「重構」)
 
 ---
 
@@ -96,8 +105,8 @@ description: "任務分解 - SEooC 開發計畫 (ISO-26262 ASIL B + ASPICE)"
 
 **目標**: 產出 SEooC Assumption Document 範本、範例與整合者檢查清單
 
-**獨立測試**: 檔案符合 4 段命名規範、模板包含 4 類假設 (Functional/Environmental/Interface/Operational)、三方審查通過
-
+**獨立測試**: 檔案符合 4 段命名規範、模板包含 4 類假設 (Functional/Envir![alt text](image-1.png)onmental/Interface/Operational)、三方審查通過
+![alt text](image.png)
 ### 文件模板與範例
 
 - [ ] T022 [P] [US1] 建立 SEooC Assumption Document 範本 (Template),包含文件結構、假設分類 (4 類)、假設記錄表格、審查簽核欄位 (符合 data-model.md §2.1, contracts/seooc-assumption-schema.md) (檔案路徑: `docs/templates/SEooC-ASM_Template.docx`)

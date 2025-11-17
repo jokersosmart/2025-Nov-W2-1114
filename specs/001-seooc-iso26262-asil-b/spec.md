@@ -5,6 +5,22 @@
 **Status**: Draft  
 **Input**: User description: "我想要做一個稽核流程的文件計畫，目標是能通過 ISO-26262 ASIL B 等級以及兼容 ASPICE 的開發計畫，產品是 PCIE Gen5 的 Controller 相關晶片，希望你先規畫一個 SEooC 的計劃書給我"
 
+## Project Overview
+
+**專案類型**: 文件開發專案 (Documentation Development Project)  
+**測試策略**: Verification-First (Checklist-Driven Development)  
+**憲法依據**: `.specify/memory/constitution.md` v1.2.0 §專案類型定義與測試優先原則適用性
+
+**說明**: 本專案產出為 ISO-26262 合規文件模板、流程定義文件與檢查清單（非應用程式開發）。依據專案憲法 v1.2.0，文件開發專案採用「驗證優先（Verification-First）」替代傳統「測試優先（TDD）」，實踐方式為**檢查表驅動開發（Checklist-Driven Development, CDD）**：
+
+1. **撰寫合規檢查表** → 定義驗證標準（等同於 TDD 的「寫測試」）
+2. **建立文件模板** → 實作內容結構（等同於 TDD 的「實作」）
+3. **試點驗證** → 以實際案例測試模板（等同於 TDD 的「執行測試」）
+4. **檢查表驗證** → 依檢查表審查試點輸出（等同於 TDD 的「測試通過」）
+5. **模板修訂** → 根據驗證結果改進（等同於 TDD 的「重構」）
+
+**驗收測試定義**: 每個文件模板至少有一個**三方審查流程**（作者 → 審查者 → 批准者）並定義明確驗收標準。整合測試調整為**跨文件一致性驗證**（追溯矩陣完整性、版本號一致性、術語表對齊）。
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - 建立 SEooC 假設與邊界定義 (Priority: P1)
