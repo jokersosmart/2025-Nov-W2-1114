@@ -196,7 +196,7 @@
 
 ### Measurable Outcomes
 
-- **SC-001**: 文件計畫涵蓋 ISO-26262 Part 4 所有必要工作產品，內部審查確認文件完整性達 100%。**衡量方法**: 完整性 = (已涵蓋工作產品數 / ISO-26262 Part 4 必要工作產品總數) × 100%。**檢查清單**: 參考 ISO-26262-4 Table 4 工作產品清單 (SEooC Assumption Document, Safety Plan, Requirement Specification, Design Specification, V&V Plan, Traceability Matrix, Safety Case, Configuration Management Plan, Review Records 等)，逐項確認模板或範例已提供
+- **SC-001**: 文件計畫涵蓋 ISO-26262 Part 4 所有必要工作產品,內部審查確認文件完整性達 100%。**衡量方法**: 完整性 = (已涵蓋工作產品數 / ISO-26262 Part 4 必要工作產品總數) × 100%。**檢查清單**: 參考 ISO-26262-4 Table 4 工作產品清單 (SEooC Assumption Document, Safety Plan, Requirement Specification, Design Specification, V&V Plan, Traceability Matrix, Safety Case, Configuration Management Plan, Review Records 等),逐項確認模板或範例已提供。**數據收集**: 品質工程師使用檢查清單逐項勾選,每月彙總完成率dashboard
 - **SC-002**: 開發團隊能在 2 週內依據文件計畫完成 SEooC 假設文件初稿並通過內部審查，3 個月內完成所有文件並通過階段性審查（**基於假設 4 定義的人力配置**）。**階段性審查里程碑**（符合 ISO-26262-8 §14.4.3 SEooC 開發順序）：
   - **第 1 個月末審查**：SEooC 假設文件 + 安全計畫（確保假設定義完整，為 HARA 提供基礎）。**驗收標準**：符合假設 5 定義的三層完成標準
   - **第 2 個月末審查**：HARA 報告 + 安全目標 + TSR（基於已審查的假設執行危害分析）
@@ -427,6 +427,13 @@
 - Q: 工作產品命名與版本控制規範應如何定義? → A: 結構化四段式命名 (文件類型_版本號_狀態_日期, 如 SEooC-Assumption_v1.2_Draft_20251114.docx, 支援Word/Codebeamer雙軌, 與Git tag對應, 狀態標籤明確區分Draft/InReview/Reviewed/Approved)
 - Q: 外部審查準備流程與證據管理應包含哪些內容? → A: 嵌入式準備流程 (規格內含2階段準備活動+3類25項核心檢查清單+稽核問題分類應對機制+證據打包結構, 自包含無需外部文件, 符合ISO-26262-2 §6.4.11要求)
 - Q: 團隊培訓計畫與能力建設應如何規劃? → A: 分級培訓計畫 (基礎層16hr全員必修+進階層24hr角色專屬+專家層持續學習, 筆試+實作演練+導師評估三重驗證, 新進人員8hr快速通道, 季度能力檢核, 符合ISO-26262-2 §5.4.2能力管理要求)
+- Q: Success Criteria度量數據如何實際收集? → A: 分層收集機制 (SC-001~003使用檢查清單逐項勾選, SC-004~005使用自動化工具報告, SC-006~008使用評估記錄與滿意度調查, 品質工程師每月彙總dashboard, 符合ISO-26262-2 §5.4.7工作產品完整性驗證)
+- Q: 工作產品模板結構應包含哪些標準元素? → A: 統一模板結構 (文件標頭:專案名/版本/日期/作者/審查者, 修訂歷史表, 目錄, 主體內容, 追溯關係表, 審查簽核頁, 所有模板遵循ISO-26262對應Part要求與公司CI/CD規範)
+- Q: FR-013風險管理流程應如何細化? → A: FMEA導向風險管理 (識別:brainstorming+checklist, 評估:likelihood×impact矩陣, 緩解:預防措施+應變計畫, 監控:每月風險register review, 升級:High risk→Tech Lead, Critical risk→Management, 符合ISO-26262-2 §6.4.3)
+- Q: 若有外部供應商依賴應如何管理? → A: 供應商分級管理 (關鍵供應商如晶片代工:月度品質會議+稽核, 一般供應商如工具廠商:季度評估, 合約納入ISO-26262條款, 交付物需通過驗收, 符合ISO-26262-8 §5供應商介面要求)
+- Q: 配置項(CI)識別規則為何? → A: 三層CI分類 (Level 1關鍵文件:所有Approved工作產品需納入Git, Level 2程式碼:所有source code+script, Level 3支援文件:會議記錄+email決策存檔, CI命名遵循四段式規範, 變更需Change Request)
+- Q: Safety Case證據連結策略? → A: GSN映射機制 (每個Goal節點標註證據ID, Evidence節點連結實際工作產品路徑, 使用追溯矩陣自動生成證據清單, Safety Case文件包含證據索引表, 確保可審計性)
+- Q: 專案收尾與交付檢查清單? → A: 四階段交付檢查 (階段1文件完整性:SC-001達成, 階段2追溯完整性:SC-003達成, 階段3外部評估:通過ISO-26262 ASIL B認證, 階段4知識移交:培訓記錄+維護手冊+lesson learned, 最終sign-off需三方核准)
 
 ## Terminology
 
@@ -464,7 +471,11 @@
 
 - **Work Product (工作產品)**: 開發過程產生的文件或程式碼產出物，如需求規格、設計文件、測試報告等。本專案所有工作產品遵循統一命名規範（文件類型代碼 + vX.Y 版本號 + 狀態標籤 + YYYYMMDD 日期），確保唯一識別與可追溯性。參考：ISO-26262-2 §5.4.7
 
-- **Training & Competency (培訓與能力)**: 確保人員具備執行功能安全活動所需資格與能力的系統性方法。本專案採用三層分級培訓（基礎 16hr 全員 + 進階 24hr 角色專屬 + 專家層持續學習），結合筆試、實作演練與導師評估三重驗證機制，並建立季度能力檢核與新進人員快速通道（8hr 濃縮培訓）。參考：ISO-26262-2 §5.4.2
+- **Training & Competency (培訓與能力)**: 確保人員具備執行功能安全活動所需資格與能力的系統性方法。本專案採用三層分級培訓(基礎 16hr 全員 + 進階 24hr 角色專屬 + 專家層持續學習),結合筆試、實作演練與導師評估三重驗證機制,並建立季度能力檢核與新進人員快速通道(8hr 濃縮培訓)。參考:ISO-26262-2 §5.4.2
+
+- **Metrics Collection (度量收集)**: 系統性收集Success Criteria達成數據的方法。本專案採分層機制:SC-001~003使用檢查清單逐項勾選,SC-004~005使用自動化工具報告(覆蓋率分析/靜態分析),SC-006~008使用評估記錄與滿意度調查,品質工程師每月彙總dashboard。參考:ISO-26262-2 §5.4.7
+
+- **Configuration Item (配置項,CI)**: 受配置管理控制的工作產品。本專案採三層分類:Level 1關鍵文件(所有Approved工作產品),Level 2程式碼(source code+script),Level 3支援文件(會議記錄+決策email)。所有CI遵循四段式命名規範,變更需Change Request。參考:ISO-26262-8 §7.4.2
 
 ### 流程評估術語
 
