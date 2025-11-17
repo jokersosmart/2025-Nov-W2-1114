@@ -620,6 +620,73 @@ Follow instructions in speckit.checklist.prompt.md
 
 ---
 
+## 2025-11-17 17:20 - 創建 Traceability Checklist (選項 C)
+
+**使用者 Prompt**:
+```
+繼續創建 traceability.md (選項 C)
+```
+
+**執行動作**:
+1. ✅ 創建 traceability.md (選項 C - 追溯性管理檢查清單)
+   - 檔案: `specs/001-seooc-iso26262-asil-b/checklists/traceability.md`
+   - 項目數: 112 個 (CHK001-CHK112)
+   - 分類: 10 大類 (矩陣結構、向上追溯、向下追溯、橫向追溯、完整性驗證、維護流程、變更影響、SEooC 特定、工具支援、外部評估)
+   - 文件定位: RD-03-006-01.E SEooC報告 (追溯矩陣管理)
+
+**檢查清單結構**:
+1. **追溯矩陣結構完整性** (CHK001-014): 識別版本管理/關係類型/追溯層級定義
+2. **向上追溯性完整性** (CHK015-026): 需求→利害關係人需求、安全需求→安全目標、設計→需求、測試→需求
+3. **向下追溯性完整性** (CHK027-041): 需求→設計、需求→測試、安全目標→安全需求、設計→實作驗證
+4. **橫向追溯性完整性** (CHK042-052): 需求間關聯、SC 間一致性、User Stories 間依賴
+5. **追溯矩陣完整性驗證** (CHK053-064): 覆蓋率檢查、孤立項目檢查、雙向追溯驗證
+6. **追溯性維護流程** (CHK065-078): 矩陣建立/更新/審查流程、維護負擔管理
+7. **變更影響分析追溯性** (CHK079-087): 影響識別、影響範圍追溯、影響記錄
+8. **SEooC 特定追溯性** (CHK088-094): 假設文件追溯、整合責任追溯、SEooC 邊界追溯
+9. **工具支援追溯性** (CHK095-103): Codebeamer 自動追溯、手動追溯管理、工具遷移保障
+10. **外部評估追溯性準備** (CHK104-112): 追溯證據準備、報告生成、問題處理
+
+**ISO-26262 條文對應**:
+- ✅ 所有 112 個項目都有完整 ISO-26262 條文對應
+- **Part-4 (System Level)**: 68 項 (追溯核心) ⭐ - §7.4.3.8 追溯性驗證要求
+- **Part-8 (Supporting)**: 56 項 (配置管理與工具) ⭐ - §6 配置管理、§9.4 工作產物識別、§11 工具驗證
+- **Part-3 (Concept)**: 11 項 - §7.4.11 安全目標追溯性
+- **Part-2 (Management)**: 24 項 - §6.4.2 變更管理、§6.4.8-9 評估準備
+- **Part-10 (SEooC)**: 7 項 (SEooC 專用) ⭐ - §8.4.1-3 假設追溯
+
+**ISO 覆蓋分析統計表**:
+- ✅ 條文對應覆蓋表 (10 大類別完整覆蓋)
+- ✅ Parts 使用統計 (5 個 Parts)
+- ✅ 統計表位置: traceability.md 總結章節
+- ✅ 詳細索引表包含所有 112 項的條文映射
+
+**相關 Commits**:
+- (待執行) - docs: add traceability checklist (option C) with ISO-26262 coverage
+- (待執行) - docs: update Prompt.md - traceability checklist creation
+
+**結果**:
+- ✅ traceability.md 創建完成 (112 項追溯性檢查)
+- ✅ 100% 追溯性覆蓋 (所有項目包含規格參考)
+- ✅ ISO-26262 條文對應完整 (Part-4 §7.4.3.8 核心 + Part-8 CM + Part-10 SEooC)
+- ✅ 焦點明確: 檢查「追溯矩陣本身的品質」而非「產品是否符合需求」
+- ✅ 與前兩個檢查清單互補:
+  * requirements-quality.md: 需求撰寫品質 (品質導向)
+  * process-compliance.md: 流程定義完整性 (流程導向)
+  * traceability.md: 追溯矩陣完整性 (追溯導向)
+
+**高風險項目** (優先處理):
+- CHK053-064: 追溯矩陣完整性驗證 (100% 雙向追溯、孤立項目檢查)
+- CHK030-035: 功能需求向下追溯至測試 (功能覆蓋率 100%)
+- CHK015-020: 安全需求向上追溯至安全目標 (HARA → SG → TSR)
+- CHK079-087: 變更影響分析追溯性 (95% 變更審查率)
+- CHK095-103: Codebeamer 自動追溯與工具遷移保障
+
+**Next Steps**:
+- 執行 commit: traceability.md 與 Prompt.md 更新
+- 繼續創建 safety-analysis.md (選項 D) → verification-validation.md (選項 E)
+
+---
+
 ## 2025-11-17 17:10 - 憲法更新: Prompt 記錄與變更追蹤規則
 
 **使用者 Prompt**:
