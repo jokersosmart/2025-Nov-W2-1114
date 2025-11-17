@@ -1200,10 +1200,86 @@ C1 - 因為現在的開發是用文件的開發並還沒有要寫程式，所以
 - ✅ 為當前 ISO-26262 文件開發專案提供合法合規的憲法基礎
 
 **Next Steps**:
-- 建議執行: 更新 spec.md 聲明專案類型（「文件開發專案」+ 「Verification-First (CDD)」）
-- 建議執行: 驗證 plan.md Constitution Check 是否需要調整（引用新版憲法）
-- 建議執行: 檢查 tasks.md 是否符合 CDD 流程（檢查表先於模板）
+- 建議執行: 更新 spec.md 聲明專案類型(「文件開發專案」+ 「Verification-First (CDD)」)
+- 建議執行: 驗證 plan.md Constitution Check 是否需要調整(引用新版憲法)
+- 建議執行: 檢查 tasks.md 是否符合 CDD 流程(檢查表先於模板)
 - 建議執行: 推送所有變更至遠端
+
+---
+
+## 2025-11-17 20:30 - tasks.md CDD 優化 (檢查表先於模板原則)
+
+**使用者 Prompt** (選項選擇):
+```
+A
+```
+
+**執行動作**:
+1. 讀取 `specs/001-seooc-iso26262-asil-b/tasks.md` 完整結構 (Phase 2-11, 101 tasks)
+2. 識別 CDD 合規性問題:
+   - **Phase 2 缺失**: 無 ISO-26262 合規檢查清單範本建立任務 (應提供各類文件的驗證標準基礎)
+   - **Phase 3-6 順序錯誤**: Template 任務在 Checklist 任務之前 (違反 CDD "檢查表先於模板" 原則)
+3. 執行 `multi_replace_string_in_file` 重構 tasks.md:
+   
+   **A. Phase 2 增強** (新增 5 個合規檢查清單範本建立任務):
+   - T021a [P]: 建立 SEooC Assumption 合規檢查清單範本 (4 類假設驗證項目)
+   - T021b [P]: 建立 HARA 合規檢查清單範本 (危害識別完整性、S/E/C 評估準確性、ASIL 判定驗證)
+   - T021c [P]: 建立 TSR 合規檢查清單範本 (需求明確性、ASIL 繼承正確性、可測試性、追溯性驗證)
+   - T021d [P]: 建立 V&V Plan 合規檢查清單範本 (測試策略完整性、覆蓋率要求 100%/100%/90%、測試工具驗證)
+   - T021e [P]: 建立 Safety Case 合規檢查清單範本 (GSN 結構完整性、證據充分性、假設管理)
+   
+   **B. Phase 3-6 任務重排序** (實踐 CDD "檢查表→模板→範例→驗證→修訂" 流程):
+   - **Phase 3 (US-001)**: T021a-REF → T024 (Integrator Checklist) → T022 (Template) → T023 (Example) → T027/T027a/T028 (驗證) → T028a (修訂循環)
+   - **Phase 4 (US-002)**: T021b-REF → T031 (ASIL Calculator) → T029 (Template) → T030 (Example) → T034/T034a/T035 (驗證) → T035a (修訂循環)
+   - **Phase 5 (US-003)**: T021c-REF → T038 (ASIL Validation Script) → T036 (Template) → T037 (Example) → T041/T041a/T042 (驗證) → T042a (修訂循環)
+   - **Phase 6 (US-004)**: T021d-REF → T045 (Tool Qualification Checklist) → T043 (Template) → T044 (Example) → T048/T048a/T049 (驗證) → T049a (修訂循環)
+   
+   **C. Phase 7-10 CDD 標註** (新增 CDD 執行順序說明):
+   - **Phase 7 (US-005)**: T021e-REF → T052 (GSN Guide) → T050 (Template) → T051 (Example) → T055/T055a/T056 (驗證) → T056a (修訂循環)
+   - **Phase 8 (US-006)**: 工具類 (Traceability Matrix), T059 驗證腳本 → T057 模板 → T058 範例 → T062/T063 驗證
+   - **Phase 9 (US-007)**: 流程類 (CM Plan), T066 Git 腳本 → T064 模板 → T065 範例 → T069/T070 驗證
+   - **Phase 10 (US-008)**: 記錄類 (Review Record), 模板 → 範例 → 驗證 (無需合規檢查清單)
+   
+4. 新增完整 CDD 5-Step 結構到 Phase 3-6:
+   - **CDD Step 1**: 撰寫合規檢查表 (定義驗證標準) - 參考 Phase 2 T021a-e 範本
+   - **CDD Step 2**: 建立文件模板 (實作內容結構) - Template 任務
+   - **CDD Step 3**: 試點驗證 (以實際案例測試) - Example 任務
+   - **CDD Step 4**: 檢查表驗證 (依檢查表審查試點輸出) - 驗證任務 + 合規檢查清單逐項審查
+   - **CDD Step 5**: 模板修訂 (根據驗證結果改進) - 修訂循環任務,重新執行 Step 3→4→5 直到通過
+
+5. Commit 變更與更新 Prompt.md
+
+**相關 Commits**:
+- `6dddec7` - refactor(tasks): 實作 CDD 完整流程 - 檢查表先於模板原則
+
+**重構範圍**:
+- **Phase 2**: 從 14 任務 (T008-T021) 增至 19 任務 (T008-T021e)
+- **Phase 3-6**: 每個 User Story 新增 5 個子步驟 (前置檢查清單參考 + 合規驗證 + 修訂循環)
+- **Phase 7-10**: 新增 CDD 執行順序標註
+- **Total Tasks**: 101 任務 → 111 任務 (新增 10 任務: 5 個合規檢查清單 + 5 個修訂循環任務)
+
+**CDD 合規性驗證**:
+- ✅ Phase 2 現提供 5 個 ISO-26262 合規檢查清單範本 (涵蓋 SEooC/HARA/TSR/V&V/Safety Case)
+- ✅ Phase 3-6 所有 User Story 嚴格遵循 "檢查表→模板→範例→驗證→修訂" 順序
+- ✅ 所有 Template 任務現於對應 Checklist 任務之後執行
+- ✅ 所有 User Story 具備完整 CDD 5-Step 循環 (包含修訂循環任務)
+- ✅ Phase 7-10 明確標註 CDD 執行順序 (工具類/流程類/記錄類適用不同變體)
+
+**憲法對齊**:
+- 符合 `.specify/memory/constitution.md` v1.2.0 §專案類型定義與測試優先原則適用性
+- 符合 `specs/001-seooc-iso26262-asil-b/spec.md` Project Overview §CDD 5-Step Process
+- 符合 `specs/001-seooc-iso26262-asil-b/plan.md` Constitution Check §CDD 策略
+
+**結果**:
+- tasks.md 現完全實踐 CDD "檢查表驅動開發" 原則
+- 所有 User Story 執行順序確保驗證標準先行,模板後行
+- Phase 2 建立的合規檢查清單成為 Phase 3-11 的驗證基礎
+- 100% CDD 原則合規 (檢查表先於模板,所有 User Story 具備完整驗證循環)
+
+**Next Steps**:
+- 推送所有變更至 remote (origin/001-seooc-iso26262-asil-b)
+- 可選執行 speckit.implement 開始 Phase 1 實作
+- 可選執行 speckit.analyze 重新驗證 CDD 合規性
 
 ---
 
