@@ -758,6 +758,71 @@ Follow instructions in speckit.checklist.prompt.md
 
 ---
 
+### 2025-11-17 17:30 - 創建 Verification & Validation Checklist (選項 E)
+
+**使用者 Prompt**: "好" (確認繼續創建選項 E - verification-validation.md)
+
+**執行動作**:
+1. ✅ 創建 `specs/001-seooc-iso26262-asil-b/checklists/verification-validation.md`
+2. ✅ 更新本 Prompt.md 記錄此互動
+3. (待執行) Git commit (自動提交)
+
+**檢查清單結構**:
+- **總項目數**: 128 個檢查項目 (CHK001-CHK128)
+- **類別數**: 10 大類
+  1. V&V 計畫結構完整性 (CHK001-016): 測試策略定義、測試階段劃分、測試環境工具、資源時程
+  2. 測試案例設計品質 (CHK017-032): 測試完整性、明確性(Given-When-Then)、通過標準、追溯性
+  3. 結構覆蓋率要求 (CHK033-047): ASIL B 目標(語句 100%、分支 100%)、語句覆蓋率、分支覆蓋率、報告
+  4. 功能覆蓋率要求 (CHK048-058): 功能覆蓋率 100%、需求測試映射、缺口管理
+  5. 安全驗證測試品質 (CHK059-073): 安全機制驗證(CRC/ECC)、診斷覆蓋率 90%、故障注入、安全確認
+  6. 測試執行與管理 (CHK074-089): 執行流程、結果記錄、缺陷管理、測試報告
+  7. 靜態驗證方法 (CHK090-100): 程式碼審查、靜態分析(MISRA-C)、設計審查
+  8. SEooC 特定驗證要求 (CHK101-110): 假設驗證、整合者責任、SEooC 邊界測試
+  9. 測試工具驗證 (CHK111-118): 工具分類(TI1/TCL)、工具驗證、應急計畫
+  10. 外部評估 V&V 準備 (CHK119-128): 證據準備、完整性自檢、問題升級
+
+**ISO-26262 條文對應**:
+- **Part-4**: §6.4.2 (TSC), §6.4.8-9 (Code Review/Static Analysis), §7.4.1-3 (System Testing), §8.4.1-4 (Safety Validation), **Table 9 (ASIL B 覆蓋率)** ⭐
+- **Part-8**: §6 (CM), **§11 (Tool Qualification)** ⭐ (TI1/TI2/TI3, TCL1/TCL2/TCL3)
+- **Part-5**: **§8 (診斷覆蓋率)** ⭐, Table 4 (ASIL B: 90% 高覆蓋率)
+- **Part-2**: §6.4.2 (Project Mgmt), §6.4.5 (Review), §6.4.7 (Risk Mgmt), §6.4.8-9 (Assessment)
+- **Part-10**: **§8.4.1-3 (SEooC)** ⭐ (假設驗證、整合者責任、邊界)
+- **ASPICE**: SWE.4-6 (輔助參考 - 單元/整合/系統測試)
+
+**ISO 覆蓋分析統計表**:
+| Part | 條文數量 | 覆蓋項目數 |
+|------|---------|----------|
+| Part-4 ⭐ (系統測試核心) | §6.4.2, §6.4.8-9, §7.4.1-3, §8.4.1-4, Table 9 | **95 項** |
+| Part-8 ⭐ (工具 & CM) | §6, §11 | **38 項** |
+| Part-5 (診斷覆蓋率) | §8 | 15 項 |
+| Part-2 (管理流程) | §6.4.2, §6.4.5, §6.4.7-9 | 28 項 |
+| Part-10 ⭐ (SEooC) | §8.4.1-3 | **10 項** |
+| ASPICE (輔助) | SWE.4-6 | 全面對齊 |
+
+**相關 Commits**: (將於下一步執行)
+- `git commit -m "docs: add verification-validation checklist (option E) with ISO-26262 coverage"`
+
+**結果**: ✅ 成功創建最後一個檢查清單 verification-validation.md (128 items, 10 categories)
+
+**高風險項目** (建議優先處理):
+- CHK033-047: ASIL B 覆蓋率要求 (語句 100%、分支 100% per Table 9, 診斷 90% per Part-5 §8)
+- CHK017-032: 測試案例完整性與追溯性 (功能覆蓋率 100%, 需求→測試雙向追溯)
+- CHK059-073: 安全驗證測試 (CRC/ECC/鏈路訓練驗證、故障注入 FDTI、安全確認)
+- CHK101-110: SEooC 特定驗證 (假設驗證檢查清單、整合者回饋機制、邊界測試)
+- CHK111-118: 測試工具驗證 (TI1/TCL 分類、覆蓋率工具/故障注入工具驗證、應急計畫)
+- CHK123-128: V&V 完整性自檢 (所有覆蓋率達標、問題升級機制、ASIL vs ASPICE 取捨)
+
+**檢查清單系列完成狀態**:
+✅ A. requirements-quality.md (143 items) - 需求品質
+✅ B. process-compliance.md (120 items) - 流程完整性
+✅ C. traceability.md (112 items) - 追溯性管理
+✅ D. safety-analysis.md (127 items) - 安全分析品質
+✅ E. verification-validation.md (128 items) - V&V 計畫品質
+
+**Next Steps**: 全部 5 份檢查清單已完成,涵蓋五大品質維度(需求/流程/追溯/安全/驗證),準備就緒進行規格文件全面驗證
+
+---
+
 ## 2025-11-17 17:10 - 憲法更新: Prompt 記錄與變更追蹤規則
 
 **使用者 Prompt**:
